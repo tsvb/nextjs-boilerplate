@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Blog</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Glass Navigation Header -->
+    <header class="glass-nav">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <h1>Personal Blog</h1>
+                </div>
+                <nav class="nav-links">
+                    <a href="#" data-page="home" class="nav-link active">Home</a>
+                    <a href="#" data-page="about" class="nav-link">About</a>
+                    <a href="#" data-page="contact" class="nav-link">Contact</a>
+                    <button class="btn btn--sm glass-btn" id="admin-toggle">Admin</button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Home Page -->
+            <div id="home-page" class="page active">
+                <!-- Search Bar -->
+                <div class="search-section">
+                    <div class="glass-card search-card">
+                        <input type="text" id="search-input" class="search-input" placeholder="Search posts...">
+                        <button class="search-btn" id="search-btn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <path d="m21 21-4.35-4.35"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Category Filter -->
+                <div class="filter-section">
+                    <div class="glass-card filter-card">
+                        <div class="filter-buttons">
+                            <button class="filter-btn active" data-category="all">All</button>
+                            <button class="filter-btn" data-category="general">General</button>
+                            <button class="filter-btn" data-category="design">Design</button>
+                            <button class="filter-btn" data-category="development">Development</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Blog Posts Feed -->
+                <div class="posts-feed" id="posts-feed">
+                    <!-- Posts will be dynamically generated here -->
+                </div>
+            </div>
+
+            <!-- About Page -->
+            <div id="about-page" class="page">
+                <div class="glass-card page-card">
+                    <h2>About</h2>
+                    <p>Welcome to my personal space on the web. This is where I share my thoughts on technology, design, and life.</p>
+                    <p>I believe in the power of simple, clean design and meaningful conversation. Whether you're here to read about the latest in web development, design trends, or just random musings, I hope you find something valuable.</p>
+                    <div class="social-links">
+                        <a href="#" target="_blank" class="social-link">Twitter</a>
+                        <a href="#" target="_blank" class="social-link">GitHub</a>
+                        <a href="#" target="_blank" class="social-link">Email</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Page -->
+            <div id="contact-page" class="page">
+                <div class="glass-card page-card">
+                    <h2>Contact</h2>
+                    <p>I'd love to hear from you. Reach out through any of these channels:</p>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <strong>Email:</strong> hello@example.com
+                        </div>
+                        <div class="contact-item">
+                            <strong>Twitter:</strong> @username
+                        </div>
+                        <div class="contact-item">
+                            <strong>GitHub:</strong> username
+                        </div>
+                    </div>
+                    <form class="contact-form" id="contact-form">
+                        <div class="form-group">
+                            <label class="form-label">Name</label>
+                            <input type="text" class="form-control glass-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control glass-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Message</label>
+                            <textarea class="form-control glass-input" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn--primary glass-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Post Detail Page -->
+            <div id="post-detail-page" class="page">
+                <div class="glass-card page-card">
+                    <button class="back-btn glass-btn" id="back-to-home">← Back to Posts</button>
+                    <div id="post-detail-content">
+                        <!-- Post detail content will be inserted here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Admin Panel (Hidden by default) -->
+    <div id="admin-panel" class="modal hidden">
+        <div class="modal-backdrop" id="admin-backdrop"></div>
+        <div class="glass-card modal-content">
+            <div class="modal-header">
+                <h3>Admin Panel</h3>
+                <button class="close-btn" id="close-admin">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="admin-tabs">
+                    <button class="tab-btn active" data-tab="create">Create Post</button>
+                    <button class="tab-btn" data-tab="manage">Manage Posts</button>
+                </div>
+                
+                <!-- Create Post Tab -->
+                <div id="create-tab" class="tab-content active">
+                    <form id="create-post-form">
+                        <div class="form-group">
+                            <label class="form-label">Title</label>
+                            <input type="text" id="post-title" class="form-control glass-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Category</label>
+                            <select id="post-category" class="form-control glass-input">
+                                <option value="general">General</option>
+                                <option value="design">Design</option>
+                                <option value="development">Development</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Tags (comma-separated)</label>
+                            <input type="text" id="post-tags" class="form-control glass-input" placeholder="tag1, tag2, tag3">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Excerpt</label>
+                            <textarea id="post-excerpt" class="form-control glass-input" rows="3" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Content</label>
+                            <textarea id="post-content" class="form-control glass-input" rows="8" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn--primary glass-btn">Create Post</button>
+                    </form>
+                </div>
+
+                <!-- Manage Posts Tab -->
+                <div id="manage-tab" class="tab-content">
+                    <div id="posts-list">
+                        <!-- Existing posts will be listed here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="glass-footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2025 Personal Blog. A place for thoughts, ideas, and discoveries.</p>
+                <div class="footer-links">
+                    <a href="#" class="footer-link">Twitter</a>
+                    <a href="#" class="footer-link">GitHub</a>
+                    <a href="#" class="footer-link">Email</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
